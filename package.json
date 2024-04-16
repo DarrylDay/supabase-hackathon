@@ -19,6 +19,8 @@
     "@types/node": "18.14.0",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
+    "@vercel/analytics": "^1.2.2",
+    "@vercel/speed-insights": "^1.0.10",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
     "mapbox-gl": "^3.3.0",
