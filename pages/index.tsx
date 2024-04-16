@@ -1,9 +1,7 @@
 import Head from "next/head";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
-import TodoList from "@/components/TodoList";
-import Map, { FullscreenControl } from "react-map-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
+import MapView from "@/components/MapView";
 
 export default function Home() {
 	const session = useSession();
@@ -24,15 +22,7 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<Map
-				mapboxAccessToken="pk.eyJ1IjoiZGFycnlsZGF5MTYiLCJhIjoiY2w5b2lmMGN0MGZzbjN1bXp4eHdudzI0NyJ9.WFEHWCCf49Oh08LsWK-ePQ"
-				initialViewState={{
-					longitude: -122.4,
-					latitude: 37.8,
-					zoom: 14,
-				}}
-				mapStyle="mapbox://styles/mapbox/streets-v9"
-			></Map>
+			<MapView />
 
 			{/* <div className="w-full h-full bg-gray-200">
 				{!session ? (
