@@ -1,14 +1,19 @@
 import { Database } from "@/lib/schema";
 import { Session, useSupabaseClient } from "@supabase/auth-helpers-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Map, { Popup, Marker } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-
-type Monster = Database["public"]["Tables"]["monsters"]["Row"];
+import { Monster } from "lib/databaseTypes";
+import MonsterDialog from "./MonsterDialog";
 
 export default function MapView() {
+	const [cursor, setCursor] = useState<string>("auto");
 	const supabase = useSupabaseClient<Database>();
 	const [monsters, setMonsters] = useState<Monster[]>([]);
+	const [monster, setMonster] = useState<Monster | undefined>();
+
+	const onMouseEnter = useCallback(() => setCursor("pointer"), []);
+	const onMouseLeave = useCallback(() => setCursor("auto"), []);
 
 	const markers = monsters.map((x) => {
 		return (
@@ -16,14 +21,28 @@ export default function MapView() {
 				key={x.id}
 				longitude={x.long}
 				latitude={x.lat}
-				offset={[-25, -25]}
+				onClick={() => onClickMonster(x)}
 			>
-				<img width={50} src="./fat-round-monster.svg" />
+				<img
+					onMouseEnter={onMouseEnter}
+					onMouseLeave={onMouseLeave}
+					width={40}
+					src="./fat-round-monster.svg"
+				/>
 			</Marker>
 		);
 	});
 
 	//const user = session.user;
+
+	const onClickMonster = (monster: Monster) => {
+		console.log(monster.name);
+		setMonster(monster);
+		const el = document.getElementById("monster_dialog");
+		if (el) {
+			(el as any).showModal();
+		}
+	};
 
 	useEffect(() => {
 		const fetchTodos = async () => {
@@ -48,10 +67,12 @@ export default function MapView() {
 					latitude: 37.8,
 					zoom: 14,
 				}}
+				cursor={cursor}
 				mapStyle="mapbox://styles/mapbox/streets-v9"
 			>
 				{markers}
 			</Map>
+			<MonsterDialog monster={monster} />
 		</>
 	);
 }
