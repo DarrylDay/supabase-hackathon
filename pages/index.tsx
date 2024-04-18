@@ -32,6 +32,11 @@ export default function Home() {
 					href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
 					rel="stylesheet"
 				/>
+				<script
+					src="https://kit.fontawesome.com/4a9f3c2ddb.js"
+					crossOrigin="anonymous"
+					async
+				/>
 			</Head>
 
 			<MapView />
