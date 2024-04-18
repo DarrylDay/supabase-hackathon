@@ -2,6 +2,8 @@ import Head from "next/head";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
 import MapView from "@/components/MapView";
+import CountdownTimer from "@/components/CountdownTimer";
+import GameByEden from "@/components/GameByEden";
 
 export default function Home() {
 	const session = useSession();
@@ -27,12 +29,16 @@ export default function Home() {
 					crossOrigin="anonymous"
 				/>
 				<link
-					href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+					href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
 					rel="stylesheet"
 				/>
 			</Head>
 
 			<MapView />
+
+			<CountdownTimer />
+
+			<GameByEden />
 
 			{/* <div className="w-full h-full bg-gray-200">
 				{!session ? (

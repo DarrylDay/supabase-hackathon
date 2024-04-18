@@ -8,6 +8,7 @@ module.exports = {
 		extend: {
 			fontFamily: {
 				game: ["DM Sans"],
+				eden: ["Akaya Kanadaka"],
 			},
 			colors: {
 				"accent-1": "#333",

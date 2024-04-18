@@ -82,14 +82,10 @@ export default function MonsterDialog({ monster }: { monster?: Monster }) {
 						</div>
 					</div>
 				</div>
-
-				{/* <div className="flex flex-col items-center">
-					<div>01</div>
-					<div>02</div>
-					<div>03</div>
-				</div> */}
-				{/* <h3 className="font-bold text-lg">{monster?.name}</h3> */}
 			</div>
+			<form method="dialog" className="modal-backdrop">
+				<button>close</button>
+			</form>
 		</dialog>
 	);
 }
