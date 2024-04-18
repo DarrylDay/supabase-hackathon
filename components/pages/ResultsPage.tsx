@@ -1,7 +1,7 @@
 import { Monster, Page } from "@/lib/gameTypes";
 import MonsterPanel from "../MonsterPanel";
 
-export default function MainPage({
+export default function ResultsPage({
 	monster,
 	setPage,
 }: {
@@ -19,37 +19,17 @@ export default function MainPage({
 					</span>
 					<div className="card w-11/12 bg-blue-200 border-blue-600 border-4">
 						<div className="card-body flex flex-col gap-6 p-8">
-							<div className="flex flex-row items-center">
-								<p className="w-48">METAMORPHOSIS</p>
-								<progress
-									className="progress progress-info w-56"
-									value={100}
-									max="100"
-								></progress>
-							</div>
-							<div className="flex flex-row items-center">
-								<p className="w-48">ATTACK</p>
-								<progress
-									className="progress progress-info w-56"
-									value={80}
-									max="100"
-								></progress>
-							</div>
-							<p>
-								Pleaser has the ability to morph into any form.
-								The more it morphs, the darker it grows and the
-								more resentment it grows, because it grows
-								farther from its original shape.
+							<p className="font-game font-black text-center text-2xl text-red-800">
+								-20 HP
 							</p>
-							<p>
-								Neutralize Pleaser and discover its secrets
-								before Pleaser goes out of control
+							<p className="font-game font-black text-center text-2xl text-blue-800">
+								YOU WEAKNEND THE PLEASER
 							</p>
 							<button
 								className="btn btn-primary"
 								onClick={() => setPage("combat-start")}
 							>
-								BEGIN COMBAT
+								COMBAT AGAIN
 							</button>
 							<button
 								className="btn"
@@ -63,8 +43,12 @@ export default function MainPage({
 									}
 								}}
 							>
-								LEAVE
+								DOUBLE THE COMBAT
 							</button>
+							<p>
+								Get a friend to help fight and save your city!
+								Combating will help unlock secrets
+							</p>
 						</div>
 					</div>
 				</div>
