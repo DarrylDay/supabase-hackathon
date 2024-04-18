@@ -3,7 +3,7 @@ import { Session, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useCallback, useEffect, useState } from "react";
 import Map, { Popup, Marker } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { Monster } from "lib/databaseTypes";
+import { Monster } from "@/lib/gameTypes";
 import MonsterDialog from "./MonsterDialog";
 
 export default function MapView() {
