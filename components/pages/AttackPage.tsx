@@ -13,7 +13,12 @@ export default function AttackPage({
 			<MonsterPanel
 				monster={monster}
 				attack={true}
-				onAttackDone={() => {
+				onAttackDone={async () => {
+					//fetch("http://localhost:3000/api/heal/" + monster?.id);
+					fetch(
+						"https://supabase-hackathon-six.vercel.app/api/heal/" +
+							monster?.id
+					);
 					setPage("results");
 				}}
 			/>
