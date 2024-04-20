@@ -15,6 +15,48 @@ export default function MapView() {
 	const onMouseEnter = useCallback(() => setCursor("pointer"), []);
 	const onMouseLeave = useCallback(() => setCursor("auto"), []);
 
+	const realtimeMonsters = supabase
+		.channel("custom-all-channel")
+		.on(
+			"postgres_changes",
+			{ event: "*", schema: "public", table: "monsters" },
+			(payload) => {
+				//console.log("Change received!", payload);
+				fetchMonsters();
+			}
+		)
+		.subscribe();
+
+	const fetchMonsters = async () => {
+		const { data: monsters, error } = await supabase
+			.from("monsters")
+			.select("*, creature_data:creature_data(*)")
+			.eq("active", true)
+			.returns<Monster[]>();
+
+		console.log(monsters);
+
+		if (error) console.log("error", error);
+		else setMonsters(monsters);
+	};
+
+	useEffect(() => {
+		fetchMonsters();
+	}, [supabase]);
+
+	useEffect(() => {
+		if (monster) {
+			const match = monsters.find((x) => x.id == monster.id);
+			setMonster(match);
+			if (!match) {
+				const el = document.getElementById("monster_dialog");
+				if (el) {
+					(el as any).close();
+				}
+			}
+		}
+	}, [monsters]);
+
 	const markers = monsters.map((x) => {
 		return (
 			<Marker
@@ -33,8 +75,6 @@ export default function MapView() {
 		);
 	});
 
-	//const user = session.user;
-
 	const onClickMonster = (monster: Monster) => {
 		console.log(monster.name);
 		setMonster(monster);
@@ -43,23 +83,6 @@ export default function MapView() {
 			(el as any).showModal();
 		}
 	};
-
-	useEffect(() => {
-		const fetchTodos = async () => {
-			const { data: monsters, error } = await supabase
-				.from("monsters")
-				.select("*, creature_data:creature_data(*)")
-				.eq("active", true)
-				.returns<Monster[]>();
-
-			console.log(monsters);
-
-			if (error) console.log("error", error);
-			else setMonsters(monsters);
-		};
-
-		fetchTodos();
-	}, [supabase]);
 
 	return (
 		<>

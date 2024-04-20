@@ -32,7 +32,7 @@ export default function ResultsPage({
 							>
 								COMBAT AGAIN
 							</button>
-							<button
+							{/* <button
 								className="btn"
 								onClick={() => {
 									const el =
@@ -45,7 +45,7 @@ export default function ResultsPage({
 								}}
 							>
 								DOUBLE THE COMBAT
-							</button>
+							</button> */}
 							<p>
 								Get a friend to help fight and save your city!
 								Combating will help unlock secrets
