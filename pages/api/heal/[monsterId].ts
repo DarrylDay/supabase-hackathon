@@ -8,7 +8,7 @@ export default async function handler(
 ) {
     const { monsterId } = req.query
 
-    const supabase = createClient<Database>(process.env.NEXT_PUBLIC_SUPABASE_URL ?? '', process.env.SUPABASE_SERVICE_KEY ?? '')
+    const supabase = createClient<Database>(process.env.NEXT_PUBLIC_SUPABASE_URL ?? '', process.env.SUPABASE_SERVICE_ROLE_KEY ?? '')
 
     const read = await supabase
     .from("monsters")
