@@ -17,7 +17,7 @@ export default function CombatStartPage({
 					<div className="w-24 rounded-full bg-blue-500">
 						<img
 							className=""
-							src="https://s3-alpha-sig.figma.com/img/39b7/a5f8/84c703216f44f9e41f3dbac333305f0c?Expires=1714348800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=TMbyXiwVzO5dNdZ1Z0en1jttXaFipI58LALUlleqgLWNwEUa6s0xRUfDlkUavBHkVOIJRaK8tQcj5-AZNLH1nmZ8-3c0KekJSEDUEeyT8cNFrPz1LOS3HHzIHP945kmBdYm~KvkYf81gO-QmO6Ln9DKBFC9iEygQXd9Y70UYWRR7BG2O6Miu2G9g32AF0owuq9gTuxSXwlFwiZ8BjjlNrzDvVdUB5vxeQH8W6XwLHLAnBtqGMaEZHjcnhUwibhWOqtb8yS5qYQuVRX8Wimq2baVwn9hQEutbdteBeC23te~E7A~y7M77MCy4YrLbM7jKt39reQpMichn8nFSPKmH~Q__"
+							src={monster?.creature_data.img_url}
 						/>
 					</div>
 				</div>
@@ -31,8 +31,8 @@ export default function CombatStartPage({
 				</div>
 			</div>
 			<p className="font-game">
-				To combat [Monster], you must create more love in [city] in
-				order to defeat the negative energy.
+				To combat {monster?.creature}, you must create more love in San
+				Francisco in order to defeat the negative energy.
 			</p>
 			<div className="indicator w-full max-w-xl mt-8">
 				<span className="indicator-item indicator-start badge badge-secondary bg-blue-400 border-blue-400 p-4 -translate-x-4">

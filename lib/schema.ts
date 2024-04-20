@@ -9,58 +9,67 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      monsters: {
+      creature_data: {
         Row: {
           created_at: string
-          id: number
-          lat: number
-          long: number
-          name: string | null
+          description: string | null
+          id: Database["public"]["Enums"]["creatures"]
+          img_url: string
         }
         Insert: {
           created_at?: string
-          id?: number
-          lat?: number
-          long?: number
-          name?: string | null
+          description?: string | null
+          id: Database["public"]["Enums"]["creatures"]
+          img_url?: string
         }
         Update: {
           created_at?: string
-          id?: number
-          lat?: number
-          long?: number
-          name?: string | null
+          description?: string | null
+          id?: Database["public"]["Enums"]["creatures"]
+          img_url?: string
         }
         Relationships: []
       }
-      todos: {
+      monsters: {
         Row: {
+          active: boolean
+          created_at: string
+          creature: Database["public"]["Enums"]["creatures"] | null
+          current_hp: number
           id: number
-          inserted_at: string
-          is_complete: boolean | null
-          task: string | null
-          user_id: string
+          lat: number
+          long: number
+          max_hp: number
+          name: string | null
         }
         Insert: {
+          active?: boolean
+          created_at?: string
+          creature?: Database["public"]["Enums"]["creatures"] | null
+          current_hp?: number
           id?: number
-          inserted_at?: string
-          is_complete?: boolean | null
-          task?: string | null
-          user_id: string
+          lat?: number
+          long?: number
+          max_hp?: number
+          name?: string | null
         }
         Update: {
+          active?: boolean
+          created_at?: string
+          creature?: Database["public"]["Enums"]["creatures"] | null
+          current_hp?: number
           id?: number
-          inserted_at?: string
-          is_complete?: boolean | null
-          task?: string | null
-          user_id?: string
+          lat?: number
+          long?: number
+          max_hp?: number
+          name?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "todos_user_id_fkey"
-            columns: ["user_id"]
+            foreignKeyName: "public_monsters_creature_fkey"
+            columns: ["creature"]
             isOneToOne: false
-            referencedRelation: "users"
+            referencedRelation: "creature_data"
             referencedColumns: ["id"]
           },
         ]
@@ -73,7 +82,14 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      creatures:
+        | "Pleaser"
+        | "Savior"
+        | "Binder"
+        | "Doubter"
+        | "Enabler"
+        | "Guilter"
+        | "Echo"
     }
     CompositeTypes: {
       [_ in never]: never

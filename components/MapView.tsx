@@ -26,8 +26,8 @@ export default function MapView() {
 				<img
 					onMouseEnter={onMouseEnter}
 					onMouseLeave={onMouseLeave}
-					width={40}
-					src="./fat-round-monster.svg"
+					width={100}
+					src={x.creature_data.img_url}
 				/>
 			</Marker>
 		);
@@ -48,8 +48,11 @@ export default function MapView() {
 		const fetchTodos = async () => {
 			const { data: monsters, error } = await supabase
 				.from("monsters")
-				.select("*")
-				.order("id", { ascending: true });
+				.select("*, creature_data:creature_data(*)")
+				.eq("active", true)
+				.returns<Monster[]>();
+
+			console.log(monsters);
 
 			if (error) console.log("error", error);
 			else setMonsters(monsters);
@@ -63,9 +66,9 @@ export default function MapView() {
 			<Map
 				mapboxAccessToken="pk.eyJ1IjoiZGFycnlsZGF5MTYiLCJhIjoiY2w5b2lmMGN0MGZzbjN1bXp4eHdudzI0NyJ9.WFEHWCCf49Oh08LsWK-ePQ"
 				initialViewState={{
-					longitude: -122.4,
-					latitude: 37.8,
-					zoom: 14,
+					longitude: -122.435,
+					latitude: 37.77,
+					zoom: 12.5,
 				}}
 				cursor={cursor}
 				mapStyle="mapbox://styles/mapbox/streets-v9"
